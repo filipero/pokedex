@@ -1,0 +1,17 @@
+name: Pokedex
+options:
+    bundleIdPrefix: Filipero.pokedex
+    deploymentTarget:
+        iOS: "12.0"
+    createIntermediateGroups: true
+
+targetTemplates:
+    Default:
+
+targets:
+    "pokedex":
+        templates: Default
+        type: framework
+        platform: iOS
+        sources: ["pokedex"]
+        dependencies: []
