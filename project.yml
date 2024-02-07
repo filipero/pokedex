@@ -1,17 +1,21 @@
 name: Pokedex
 options:
     bundleIdPrefix: Filipero.pokedex
-    deploymentTarget:
-        iOS: "12.0"
+    deploymentTarget: "13.7"
     createIntermediateGroups: true
 
 targetTemplates:
     Default:
 
+
 targets:
     "pokedex":
         templates: Default
-        type: framework
+        type: application
         platform: iOS
         sources: ["pokedex"]
         dependencies: []
+        info:
+            path: "pokedex/Info.plist"
+            properties:
+                CFBundleVersion: "1"
