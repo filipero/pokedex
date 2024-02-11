@@ -14,8 +14,16 @@ targets:
         type: application
         platform: iOS
         sources: ["pokedex"]
-        dependencies: []
+        dependencies: [package: NetworkManager]
         info:
             path: "pokedex/Info.plist"
             properties:
                 CFBundleVersion: "1"
+                UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+                UILaunchStoryboardName: LaunchScreen
+
+packages:
+    NetworkManager:
+        url: git@github.com:filipero/NetworkManager.git
+        branch: master
+
