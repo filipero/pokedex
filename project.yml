@@ -14,16 +14,17 @@ targets:
         type: application
         platform: iOS
         sources: ["pokedex"]
-        dependencies: [package: NetworkManager]
+        dependencies: [package: NetworkManager, package: TinyConstraints]
         info:
             path: "pokedex/Info.plist"
             properties:
                 CFBundleVersion: "1"
-                UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
                 UILaunchStoryboardName: LaunchScreen
 
 packages:
     NetworkManager:
         url: git@github.com:filipero/NetworkManager.git
         branch: master
-
+    TinyConstraints:
+        url: https://github.com/roberthein/TinyConstraints.git
+        branch: master
