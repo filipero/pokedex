@@ -105,7 +105,7 @@ class StatusView: BaseView {
             view.trackTintColor = .systemGray.withAlphaComponent(0.3)
             view.progress = value
             view.progressTintColor = {
-                switch value {
+                switch (round(value * 100) / 100) {
                 case 0.0 ... 0.25:
                     return .systemRed
                 case 0.26 ... 0.50:
