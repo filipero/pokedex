@@ -1,6 +1,6 @@
 name: Pokedex
 options:
-    bundleIdPrefix: Filipero.pokedex
+    bundleIdPrefix: Filipero.Pokedex
     deploymentTarget: "13.7"
     createIntermediateGroups: true
 
@@ -9,22 +9,41 @@ targetTemplates:
 
 
 targets:
-    "pokedex":
+    Pokedex:
         templates: Default
         type: application
         platform: iOS
-        sources: ["pokedex"]
-        dependencies: [package: NetworkManager, package: TinyConstraints]
+        sources:
+            - path: Pokedex
+        dependencies:
+            - package: NetworkManager
+            - package: TinyConstraints
+        scheme:
+            testTargets:
+            - PokedexTests
         info:
-            path: "pokedex/Info.plist"
+            path: Pokedex/Info.plist
             properties:
                 CFBundleVersion: "1"
                 UILaunchStoryboardName: LaunchScreen
+    PokedexTests:
+        type: "bundle.unit-test"
+        platform: iOS
+        sources:
+            - path: PokedexTests
+        dependencies:
+         - target: Pokedex
+         - package: SnapshotTesting
+        info:
+            path: PokedexTests/Info.plist
 
 packages:
     NetworkManager:
-        url: git@github.com:filipero/NetworkManager.git
+        url: https://github.com/filipero/NetworkManager.git
         branch: master
     TinyConstraints:
         url: https://github.com/roberthein/TinyConstraints.git
         branch: master
+    SnapshotTesting:
+        url: https://github.com/pointfreeco/swift-snapshot-testing
+        exactVersion: 1.14.2
