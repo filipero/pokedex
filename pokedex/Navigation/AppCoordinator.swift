@@ -1,6 +1,6 @@
 //
 //  AppCoordinator.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //

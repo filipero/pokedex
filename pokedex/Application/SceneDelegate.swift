@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 06/02/24.
 //
