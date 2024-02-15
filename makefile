@@ -13,6 +13,12 @@ generate_open:
 
 setup:
 	brew install xcodegen
+	brew install asdf
+	
+	asdf plugin add ruby
+	asdf install ruby 3.1.4
+	asdf local ruby 3.1.4
+	
 	gem install bundler
 
 	$(BUNDLE) install

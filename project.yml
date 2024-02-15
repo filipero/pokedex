@@ -33,7 +33,6 @@ targets:
             - path: PokedexTests
         dependencies:
          - target: Pokedex
-         - package: SnapshotTesting
         info:
             path: PokedexTests/Info.plist
 
@@ -44,6 +43,3 @@ packages:
     TinyConstraints:
         url: https://github.com/roberthein/TinyConstraints.git
         branch: master
-    SnapshotTesting:
-        url: https://github.com/pointfreeco/swift-snapshot-testing
-        exactVersion: 1.14.2
