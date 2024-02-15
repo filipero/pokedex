@@ -36,10 +36,6 @@ final class FilterView: BaseView {
         mainStackView.edgesToSuperview(insets: .left(16))
         mainStackView.width(to: scrollView, offset: -32)
     }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-    }
 }
 
 extension FilterView: FilterViewProtocol {
