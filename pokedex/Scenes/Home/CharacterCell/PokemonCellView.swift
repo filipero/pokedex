@@ -1,6 +1,6 @@
 //
 //  PokemonCellView.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //
@@ -17,7 +17,7 @@ final class PokemonCellView: UITableViewCell {
     lazy var idLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 16)
-        view.textColor = .gray.withAlphaComponent(0.4)
+        view.textColor = .systemGray
         return view
     }()
 
@@ -29,10 +29,10 @@ final class PokemonCellView: UITableViewCell {
     }()
     lazy var profileImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .gray.withAlphaComponent(0.1)
+        view.backgroundColor = .systemGray.withAlphaComponent(0.3)
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 36
-        view.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        view.layer.borderColor = UIColor.systemGray.withAlphaComponent(0.5).cgColor
         view.layer.borderWidth = 2
         view.clipsToBounds = true
         return view
@@ -46,14 +46,14 @@ final class PokemonCellView: UITableViewCell {
     }()
     private let cellBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.shadowRadius = 3
-        view.layer.shadowOffset = CGSize(width: 2, height: 2)
-        view.layer.shadowOpacity = 0.4
-        view.layer.cornerRadius = 8
         view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return view.asCard()
     }()
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        cellBackgroundView.layer.shadowColor = UIColor.label.cgColor
+    }
     
     // MARK: - Initialize
     
@@ -76,7 +76,7 @@ final class PokemonCellView: UITableViewCell {
     }
     
     private func setupCell() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemBackground
     }
     
     private func installConstraints() {

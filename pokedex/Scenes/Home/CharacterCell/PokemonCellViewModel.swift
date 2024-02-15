@@ -1,6 +1,6 @@
 //
 //  PokemonCellViewModel.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //
@@ -14,6 +14,7 @@ class PokemonCellViewModel {
     }
     
     func configure(cell: PokemonCellView) {
+        cell.profileImageView.image = nil
         let imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\( character.id ?? "").png"
         cell.profileImageView.downloaded(from: imageUrl)
         cell.nameLabel.text = character.name.capitalizingFirstLetter()

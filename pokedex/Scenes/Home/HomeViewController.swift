@@ -1,6 +1,6 @@
 //
 //  HomeViewController.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //
@@ -34,12 +34,23 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateNavigationBarItem()
         setupBinds()
+    }
+
+    @objc private func filterButton() {
+        guard let _ = viewModel.filter else {
+            self.viewModel.goToFilterScreen()
+            return
+        }
+        viewModel.getMoreCharacters(filter: nil)
     }
 
     private func setupBinds() {
         title = viewModel.screenTitle
-        viewModel.requestCharacters()
+        navigationController?.navigationBar.tintColor = .label
+        navigationController?.navigationBar.prefersLargeTitles = true
+        viewModel.getMoreCharacters(filter: viewModel.filter)
     }
 }
 
@@ -47,7 +58,7 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = self.viewModel.characterDataSource.models.count - 1
         if indexPath.row == lastElement && !viewModel.isLoadingData {
-            viewModel.requestCharacters()
+            viewModel.getMoreCharacters(filter: viewModel.filter)
         }
     }
 
@@ -59,14 +70,27 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: HomeDelegate {
     func scrollToTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.baseView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.baseView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
 
     func updateTableView() {
         DispatchQueue.main.async {
             self.baseView.tableView.dataSource = self.viewModel.characterDataSource
             self.baseView.tableView.reloadData()
+            self.updateNavigationBarItem()
         }
+    }
+
+    private func updateNavigationBarItem() {
+        var button: UIBarButtonItem
+        if let _ = viewModel.filter {
+            button = UIBarButtonItem(title: "Remove Filter", image: .remove, target: self, action: #selector(filterButton))
+        } else {
+            button = UIBarButtonItem(title: "Filter", image: .init(systemName: "switch.2"), target: self, action: #selector(filterButton))
+        }
+        navigationItem.rightBarButtonItem = button
     }
 }

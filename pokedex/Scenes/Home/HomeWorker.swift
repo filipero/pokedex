@@ -1,6 +1,6 @@
 //
 //  HomeWorker.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //
@@ -10,6 +10,7 @@ import NetworkManager
 
 protocol HomeWorkerProtocol: AnyObject {
     func getPokemonList(request: PokemonListRequest, result: @escaping ([PokemonListItem]?, Error?) -> ())
+    func getPokemonListByType(request: PokemonListByTypeRequest, result: @escaping ([PokemonListItem]?, Error?) -> ())
 }
 
 class HomeWorker {
@@ -27,6 +28,19 @@ extension HomeWorker: HomeWorkerProtocol {
             switch response {
             case .success(let response):
                 result(response?.results, nil)
+            case .failure(let error):
+                result(nil, error)
+            }
+        }
+    }
+
+    func getPokemonListByType(request: PokemonListByTypeRequest, result: @escaping ([PokemonListItem]?, Error?) -> ()) {
+        networkManager.request(with: request) { (response: Result<TypeResponse?, Error>) in
+            switch response {
+            case .success(let response):
+                result(response?.pokemon?.compactMap({ pokemon in
+                    pokemon.pokemon
+                }), nil)
             case .failure(let error):
                 result(nil, error)
             }

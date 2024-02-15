@@ -1,6 +1,6 @@
 //
 //  HomeCoordinator.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //
@@ -35,6 +35,21 @@ extension HomeCoordinator: HomeNavigationDelegate {
         let detailsViewController = DetailsViewController(viewModel: detailsScreenViewModel)
 
         presenter.pushViewController(detailsViewController, animated: true)
+    }
+
+    func goToFilterScreen() {
+        let filterViewModel = FilterViewModel(navigationDelegate: self)
+        let filterViewController = FilterViewController(viewModel: filterViewModel)
+
+        presenter.pushViewController(filterViewController, animated: true)
+    }
+}
+
+extension HomeCoordinator: FilterNavigationDelegate {
+    func goToHomeScreen(with type: Pokemon.Types) {
+        presenter.popViewController(animated: true)
+        let controller = presenter.topViewController as? HomeViewController
+        controller?.viewModel.getMoreCharacters(filter: type)
     }
 }
 

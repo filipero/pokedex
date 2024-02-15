@@ -1,11 +1,12 @@
 //
 //  HomeView.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 07/02/24.
 //
 
 import UIKit
+import TinyConstraints
 
 final class HomeView: BaseView {
     let tableView: UITableView = {
@@ -21,7 +22,7 @@ final class HomeView: BaseView {
   //MARK: - Initialize
   override func initialize() {
       addSubview(tableView)
-      backgroundColor = .white
+      backgroundColor = .systemBackground
       tableView.edgesToSuperview(excluding: .bottom, usingSafeArea: true)
       tableView.bottomToSuperview()
   }

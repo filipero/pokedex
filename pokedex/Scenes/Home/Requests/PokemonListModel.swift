@@ -1,6 +1,6 @@
 //
 //  PokemonListModel.swift
-//  pokedex
+//  Pokedex
 //
 //  Created by Filipe Rodrigues Oliveira on 08/02/24.
 //
@@ -18,6 +18,12 @@ struct PokemonListItem: Codable {
     var id: String?
     var url: String
     let name: String
+
+    init(id: String? = nil, url: String, name: String) {
+        self.id = id
+        self.url = url
+        self.name = name
+    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
