@@ -21,7 +21,6 @@ class AppCoordinator: Coordinator {
 
     lazy var viewController: UIViewController = {
         let controller = UIViewController()
-        controller.view.backgroundColor = .blue
         return controller
     }()
 

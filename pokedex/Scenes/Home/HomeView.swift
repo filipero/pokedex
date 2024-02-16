@@ -11,8 +11,9 @@ import TinyConstraints
 final class HomeView: BaseView {
     let tableView: UITableView = {
         let view = UITableView()
+        view.backgroundColor = .clear
         view.separatorStyle = .none
-        view.allowsSelection = true
+        
         view.register(PokemonCellView.self,
                       forCellReuseIdentifier: PokemonCellView.identifier)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +23,6 @@ final class HomeView: BaseView {
   //MARK: - Initialize
   override func initialize() {
       addSubview(tableView)
-      backgroundColor = .systemBackground
       tableView.edgesToSuperview(excluding: .bottom, usingSafeArea: true)
       tableView.bottomToSuperview()
   }

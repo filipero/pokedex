@@ -29,7 +29,6 @@ final class FilterView: BaseView {
 
     //MARK: - Initialize
     override func initialize() {
-        backgroundColor = .systemBackground
         addSubview(scrollView)
         scrollView.edgesToSuperview(usingSafeArea: true)
         scrollView.addSubview(mainStackView)

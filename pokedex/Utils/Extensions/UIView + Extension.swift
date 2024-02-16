@@ -23,7 +23,7 @@ extension UIView {
 
 /// Methods
 extension UIView {
-    func asCard(backgroundColor: UIColor = .tertiarySystemBackground, shadowOffset: CGSize = .init(width: 4, height: 4), shadowRadius: CGFloat = 3, shadowOpacity: Float = 0.4, cornerRadius: CGFloat = 16, shadowColor: CGColor = UIColor.label.cgColor) -> Self {
+    func asCard(backgroundColor: UIColor = .systemBackground, shadowOffset: CGSize = .init(width: 0, height: 0.5), shadowRadius: CGFloat = 0.75, shadowOpacity: Float = 0.19, cornerRadius: CGFloat = 8, shadowColor: CGColor = UIColor.label.cgColor) -> Self {
         self.backgroundColor = backgroundColor
         self.layer.shadowColor = shadowColor
         self.layer.shadowRadius = shadowRadius

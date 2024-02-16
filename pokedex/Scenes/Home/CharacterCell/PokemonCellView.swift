@@ -29,10 +29,10 @@ final class PokemonCellView: UITableViewCell {
     }()
     lazy var profileImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .systemGray.withAlphaComponent(0.3)
+        view.backgroundColor = .systemGray3
         view.contentMode = .scaleAspectFill
-        view.layer.cornerRadius = 36
-        view.layer.borderColor = UIColor.systemGray.withAlphaComponent(0.5).cgColor
+        view.layer.cornerRadius = 32
+        view.layer.borderColor = UIColor.systemGray.cgColor
         view.layer.borderWidth = 2
         view.clipsToBounds = true
         return view
@@ -47,7 +47,7 @@ final class PokemonCellView: UITableViewCell {
     private let cellBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        return view.asCard()
+        return view
     }()
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -69,30 +69,12 @@ final class PokemonCellView: UITableViewCell {
     }
     
     private func setupComponents() {
-        contentView.addSubview(cellBackgroundView)
+        backgroundColor = .clear
+        contentView.addSubview(cellBackgroundView.asCard())
+        cellBackgroundView.edgesToSuperview(insets: .uniform(8))
+        cellBackgroundView.height(80)
         cellBackgroundView.addSubview(mainStackView)
-        setupCell()
-        installConstraints()
-    }
-    
-    private func setupCell() {
-        contentView.backgroundColor = .systemBackground
-    }
-    
-    private func installConstraints() {
-        NSLayoutConstraint.activate([
-            cellBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            cellBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            cellBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            cellBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            cellBackgroundView.heightAnchor.constraint(equalToConstant: 80),
-            
-            mainStackView.topAnchor.constraint(equalTo: cellBackgroundView.topAnchor, constant: 4),
-            mainStackView.leadingAnchor.constraint(equalTo: cellBackgroundView.leadingAnchor, constant: 16),
-            mainStackView.trailingAnchor.constraint(equalTo: cellBackgroundView.trailingAnchor, constant: -16),
-            mainStackView.bottomAnchor.constraint(equalTo: cellBackgroundView.bottomAnchor, constant: -4),
-            
-            profileImageView.widthAnchor.constraint(equalToConstant: 72),
-        ])
+        mainStackView.edgesToSuperview(insets: .uniform(8))
+        profileImageView.width(64)
     }
 }

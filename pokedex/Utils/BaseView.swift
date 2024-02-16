@@ -36,5 +36,6 @@ open class BaseView: UIView {
     // MARK: Private
     fileprivate func setup() {
         self.initialize()
+        backgroundColor = .tertiarySystemGroupedBackground
     }
 }

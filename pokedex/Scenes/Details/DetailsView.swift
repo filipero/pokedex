@@ -42,12 +42,6 @@ final class DetailsView: BaseView {
         return view.asCard()
     }()
 
-    lazy var evolutionsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .purple
-        return view
-    }()
-
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +64,6 @@ final class DetailsView: BaseView {
     
     //MARK: - Initialize
     override func initialize() {
-        backgroundColor = .systemBackground
         addSubview(scrollView)
         scrollView.edgesToSuperview(usingSafeArea: true)
         scrollView.addSubview(mainStackView)

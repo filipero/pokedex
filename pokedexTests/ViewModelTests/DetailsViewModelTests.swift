@@ -29,24 +29,22 @@ final class DetailsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.screenTitle, "Pikachu")
     }
 
-    func test_whenGoToHomeScreen_ShouldBeCalled() {
+    func test_whenGetPokemonDetails_ShouldReturn() {
         sut.getPokemonData(completion: { _ in })
         XCTAssertTrue(serviceSpy.getPokemonDetailsCalled)
-    }
-
-    func test_whenGoToHomeScreen_ShouldCallCountBeOne() {
-        sut.getPokemonData(completion: { _ in })
         XCTAssertEqual(serviceSpy.getPokemonDetailsCallCount, 1)
+        XCTAssertEqual(serviceSpy.getPokemonDetailsRequest, .init(pokemonName: "pikachu"))
     }
 }
 
 fileprivate class WorkerSpy: DetailsWorkerProtocol {
     private(set) var getPokemonDetailsCalled: Bool = false
     private(set) var getPokemonDetailsCallCount: Int = 0
+    private(set) var getPokemonDetailsRequest: DetailsRequest?
 
     func getPokemonDetails(request: DetailsRequest, result: @escaping (Pokemon?, Error?) -> ()) {
         getPokemonDetailsCalled = true
         getPokemonDetailsCallCount += 1
-
+        getPokemonDetailsRequest = request
     }
 }
