@@ -17,7 +17,7 @@ The Pokedex app uses the [PokeAPI](https://pokeapi.co/) to display a list of pok
 ### Instalation
 
 This project was made using **Xcode 14.0**, Swift and UIKit, XCodeGen and the following SPM Packages: 
-- [NetworkManager](https://github.com/filipero/NetworkManager.git) - A simple Network Manager package I created. 
+- [NetworkManager](https://github.com/filipero/NetworkManager.git) - A simple Network Manager package. 
 - [TinyConstraints](https://github.com/roberthein/TinyConstraints.git) - Used to define constraints in a simpler and less verbose way.
 Ruby 3.0.0 or higher required
 
